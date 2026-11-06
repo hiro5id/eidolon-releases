@@ -1,0 +1,56 @@
+# eidolon with Docker Compose. Copy this file and .env.example into a folder, rename .env.example to .env,
+# fill it in, then:
+#
+#   mkdir -p data export        # before the first start: else Docker makes them owned by root
+#   docker compose up -d
+#   docker compose logs         # the link to open (http://localhost:8765/?key=…)
+#
+# Network shares (SMB or NFS): uncomment one block under "volumes:" at the bottom and the matching
+# "nas-photos" line under the service's volumes.
+
+name: eidolon
+
+services:
+  eidolon:
+    image: sebestyen/eidolon:latest
+    container_name: eidolon
+    restart: unless-stopped
+    # Files it writes (database, exports) belong to you
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
+    # Sandbox: nothing in the image can be changed, no extra rights, no gaining any
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    # Reachable from this computer only. For other computers too: "${PORT:-8765}:8765" and
+    # PUBLIC_URL with this computer's name (see DOCKERHUB.md, "Using it from other computers")
+    ports:
+      - "127.0.0.1:${PORT:-8765}:8765"
+    environment:
+      PUBLIC_URL: "http://localhost:${PORT:-8765}"
+      ACCESS_KEY: "${ACCESS_KEY:-}"
+    volumes:
+      - ./data:/data                                  # the database: keep it
+      - ./export:/export                              # where extractions go
+      - "${PHOTOS_DIR:?set PHOTOS_DIR in .env}:/photos/local:ro"   # your photos, read-only
+      # - nas-photos:/photos/nas:ro                   # a network share (one of the blocks below)
+
+# volumes:
+#   # --- SMB / CIFS: Windows shares, Synology, QNAP, TrueNAS, Samba ---
+#   nas-photos:
+#     driver: local
+#     driver_opts:
+#       type: cifs
+#       device: "//${NAS_ADDRESS}/${NAS_SHARE}"
+#       o: "addr=${NAS_ADDRESS},username=${NAS_USER},password=${NAS_PASSWORD},vers=3.0,ro,uid=${USER_ID:-1000},gid=${GROUP_ID:-1000}"
+#
+#   # --- NFS ---
+#   nas-photos:
+#     driver: local
+#     driver_opts:
+#       type: nfs
+#       device: ":${NFS_EXPORT}"
+#       o: "addr=${NAS_ADDRESS},nfsvers=4,ro"
