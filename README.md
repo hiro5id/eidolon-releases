@@ -1,4 +1,4 @@
-Eidolon 2026.11.2
+Eidolon 2026.11.3
 ===
 
 **Your photo library, without the duplicates, and back in order.**

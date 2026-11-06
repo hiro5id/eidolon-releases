@@ -2,6 +2,12 @@
 
 What changed in each version of Eidolon, the newest first.
 
+## 2026.11.3 (2026-11-06)
+
+- **List and grid, switched right above the list.** A List | Grid switch now sits on top of the list, with the sort order beside it (and By day in the grid), so the grid view is easy to find.
+- **Review opens with no filters.** The first time, the list shows everything (Any · All · All, as Clear filters does) instead of only items with copies that aren't reviewed yet. After that it opens on the filters you used last.
+- **Clearer Homebrew install.** It is shown as two steps: `brew tap hiro5id/eidolon`, then `brew install eidolon`.
+
 ## 2026.11.2 (2026-11-06)
 
 - **Updating stays on its "starting again" message until the new version is ready.** Every open tab is covered until it reloads by itself on the new version, even one opened at the last moment, so nothing can be changed or clicked in the meantime. Quitting covers every tab the same way.
