@@ -1,4 +1,4 @@
-Eidolon 2026.11.0
+Eidolon 2026.11.1
 ===
 
 Eidolon finds the copies and Live Photo pairs (a still and its short video) in a photo and video library by how they look, not by their names. You review them in your browser, keep the best copy of each, and extract a tidy, well-named library. Your originals are never changed, and your photos never leave your computer.
