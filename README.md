@@ -1,4 +1,4 @@
-Eidolon 2026.11.3
+Eidolon 2026.11.4
 ===
 
 **Your photo library, without the duplicates, and back in order.**
@@ -11,25 +11,28 @@ Eidolon looks at the pictures themselves. It finds every copy of a picture, what
 
 - **"I have the same photo three times, and I don't know which one to keep."** Eidolon groups the copies of a picture: other formats, resized, re-compressed, renamed, sent through a messaging app, cropped or straightened. It marks the best one (the original over a crop, then the most pixels, the camera's own file, the sharpest), and **Keep best** drops the rest in one go.
 - **"My Live Photos came out of my iPhone as loose photos and short videos."** Eidolon pairs each still with its video again, exactly when they still carry Apple's Live Photo ID, by look when they don't, and exports them side by side under one name so photo apps can show them as one again.
+- **"My phone filmed it sideways."** Turn a video upright, all of it or only the part filmed sideways, and it plays upright once exported. Photos lying on their side are found by the faces in them and turned upright for you, and you can turn any photo yourself.
 - **"My backups overlap, and I've merged them so many times I've lost track."** Scan each one, combine the scans, and copies found across all of them group together. A scan done earlier isn't read again, and scanning again later only reads new or changed files.
-- **"Half my library is junk."** Blank and black frames, accidental one-second videos and bursts of twelve nearly identical shots are suggested for you to drop. Nothing is dropped unless you say so.
-- **"My folders are a mess."** Each picture goes into an album folder: the one you chose, else a folder name that means something (never `DCIM` or `100APPLE`), else the event or the trip it was taken on (`2019-06 Lisbon, Portugal`), else its month. Screenshots and documents get a folder of their own.
-- **"I don't want to lose the captions, places and dates I added over the years."** What any copy of a picture knows (titles, captions, keywords, a Google Takeout file's details, where it was taken) goes with the copy you keep, in an `.xmp` file that photo apps read. Photos are turned upright for every app.
+- **"Half my library is junk."** Blank and black frames and accidental one-second videos are suggested for you to drop, and bursts of nearly identical shots are shown together with the sharpest marked. Nothing is dropped unless you say so.
+- **"My folders are a mess."** Each picture goes into an album folder: the one you chose, else a folder name that means something (never `DCIM` or `100APPLE`), else the event or the trip it was taken on (`2019-06 Lisbon, Portugal`), else its month. When you choose an album, Eidolon suggests the likely ones first: those with photos taken the same day, at the same place, or looking like this one, each saying why. Screenshots and documents get a folder of their own and stay out of your photo groups.
+- **"I can't find the photo I'm thinking of."** Search by name, place or caption, by what a picture shows ("dog", "beach"), by the words in it (a sign, a menu, a receipt), by who is in it, or by the weather that day ("snow"). Or search with a photo: show Eidolon one and it finds the same picture, or the same subject, with a slider for how alike they must be.
+- **"I want to find everyone's photos by their name."** Eidolon gathers the faces in your photos by person. Name a person, and their photos are found by that name, which goes with the photos you export. If someone's faces end up in two places (sunglasses can do that), give both the same name and they become one person.
+- **"I don't want to lose the captions, places and dates I added over the years."** What any copy of a picture knows (titles, captions, keywords, a Google Takeout file's details, where it was taken) goes with the copy you keep, in an `.xmp` file that photo apps read, with the place in words, the words read in the picture and the names of the people in it as keywords.
 - **"Some of my old files might be damaged."** **Check files** reads each file again and finds the ones damaged since they were scanned (a failing drive, a copy cut short). **Repair** puts back the exact bytes scanned from another copy, from a backup or from the scan's own recovery data, and only when you ask.
 
 ## How it works
 
 1. **Scan** the folders you want to clean up: drives, backups, exports. It works with hundreds of thousands of files.
-2. **Review** the groups in your browser: keep or drop copies, move a photo to another group, choose albums, write titles and captions. Every change happens at once and can be undone. Search by name, place, caption or text in the picture, or search with a photo to find the same subject. It works with a keyboard, a mouse or a tablet's touch screen, even with the drive holding your originals unplugged.
-3. **Extract** the files you kept into a new folder: one exact copy of each, in its album, with a clear name.
+2. **Review** the groups in your browser: keep or drop copies, move a photo to another group, choose albums, turn photos and videos, write titles and captions. Nothing happens to any file yet: Eidolon only remembers what you decided, and every change can be undone. It works with a keyboard, a mouse or a tablet's touch screen, even with the drive holding your originals unplugged.
+3. **Extract** the files you kept into a new folder. Only now are files copied: one copy of each, in its album, with a clear name, turned and captioned as you left it.
 
-**Your originals are never changed, moved or deleted**: Eidolon only reads them and writes the clean library somewhere else. **Your photos never leave your computer**: places are looked up offline, and faces and text in pictures are found on your computer too. It runs on macOS, Windows and Linux, or in Docker on a server or NAS.
+**Your originals are never changed, moved or deleted**: Eidolon only reads them and writes the clean library somewhere else. The one exception is **Repair**, when you ask it to fix a damaged file. **Your photos never leave your computer**: places, faces, the text in pictures and what they show are all worked out on your computer. Only the weather, if you turn it on, asks a weather service (Open-Meteo) about the town and the day, never about a photo or where exactly it was taken. It runs on macOS, Windows and Linux, or in Docker on a server or NAS.
 
 ## Install
 
 | | Install | Update |
 |---|---|---|
-| **macOS, Linux** (Homebrew) | `brew tap hiro5id/eidolon` then `brew install eidolon` | `brew upgrade eidolon` |
+| **macOS, Linux** (Homebrew) | `brew tap hiro5id/eidolon` then `brew install eidolon` | `brew update` then `brew upgrade eidolon` |
 | **Windows** (Scoop) | `scoop bucket add eidolon https://github.com/hiro5id/scoop-eidolon` then `scoop install eidolon` | `scoop update eidolon` |
 | **macOS, Linux, Windows** (npm, Node 18 or newer) | `npm install -g @sebestyen/eidolon` (or try it with `npx @sebestyen/eidolon`) | `npm install -g @sebestyen/eidolon@latest` |
 | **Docker** | `docker run` or Docker Compose, see [sebestyen/eidolon](https://hub.docker.com/r/sebestyen/eidolon) (compose example in [`docker/`](https://github.com/hiro5id/eidolon-releases/tree/main/docker)) | `docker compose pull && docker compose up -d` |
@@ -49,4 +52,4 @@ Unpack `eidolon-<system>-<processor>.tar.gz` (Windows: `eidolon-windows-x86_64.z
 Homebrew, Scoop and npm don't need either. `SHA256SUMS` in each release lists every file's checksum.
 
 ## Credits
-Place names: [GeoNames](https://www.geonames.org), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Face detector: YuNet (OpenCV Zoo, MIT License). Text detector and recognizer: PP-OCRv3 and CRNN (OpenCV Zoo, Apache License 2.0). Same subject search: CLIP ViT-B/32 image encoder (OpenAI, MIT License).
+Place names: [GeoNames](https://www.geonames.org), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Weather (if you turn it on): [Open-Meteo](https://open-meteo.com), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Face detector (finds sideways photos): YuNet, OpenCV Zoo, MIT License. Face recognizer (People): SFace, OpenCV Zoo, Apache License 2.0. Text detector and recognizer: PP-OCRv3 and CRNN, OpenCV Zoo, Apache License 2.0. Search with a photo (same subject) and what pictures show: CLIP ViT-B/32 image encoder, OpenAI, MIT License.

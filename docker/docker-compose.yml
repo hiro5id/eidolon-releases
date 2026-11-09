@@ -26,7 +26,7 @@ services:
     security_opt:
       - no-new-privileges:true
     # Reachable from this computer only. For other computers too: "${PORT:-8765}:8765" and
-    # PUBLIC_URL with this computer's name (see DOCKERHUB.md, "Using it from other computers")
+    # PUBLIC_URL with this computer's name (see the Docker Hub page, "Using it from other computers")
     ports:
       - "127.0.0.1:${PORT:-8765}:8765"
     environment:
